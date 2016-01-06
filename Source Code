@@ -1,0 +1,23 @@
+int trigPin = 7; //Sets trig on proximity sensor to pin 8    
+int echoPin = 10; //Sets echo on proximity sensor to pin 10
+long duration, cm; //Sets proximity sensor to measure in cm
+void setup() {
+  pinMode(trigPin, OUTPUT); //Defines output on proximity sensor
+  pinMode(echoPin, INPUT); //Defines input on proximity sensor
+}
+void loop()
+{
+  //Sets proximity sensor to measure in cm
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(5);
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+  pinMode(echoPin, INPUT);
+  duration = pulseIn(echoPin, HIGH);
+  cm = (duration/2) / 29.1;
+  Serial.print(cm);
+  Serial.print("cm");
+  Serial.println();
+  delay(50);
+}
